@@ -1,15 +1,21 @@
 package com.flightapp.flightbookingwebflux.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @Data
+@NoArgsConstructor
 @Document(collection = "bookings")
 public class Booking {
 
     @Id
     private String id;
+
+    private String pnr;
 
     private String flightId;
 
@@ -18,4 +24,15 @@ public class Booking {
     private int seats;
 
     private String mealType;
+
+    private String name; // booking user name
+
+    // Store as STRING because MongoDB cannot encode ZonedDateTime without codec
+    private String bookingDate;
+    private String journeyDate;
+
+    private double totalPrice;
+    private BookingStatus status;
+
+    private List<Passenger> passengers;
 }
