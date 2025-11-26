@@ -8,6 +8,7 @@ class FlightbookingWebfluxApplicationTests {
 
     @Test
     void contextLoads() {
+        // This test is intentionally left empty.
+        // Its purpose is to verify that the Spring Boot application context loads successfully.
     }
-
 }
