@@ -67,6 +67,7 @@ Netty	Reactive HTTP Server
 
 ###  ****Project Structure****
 
+```
 src/main/java/com/flightapp/flightbookingwebflux
 │
 ├── controller
@@ -92,6 +93,7 @@ src/main/java/com/flightapp/flightbookingwebflux
 │
 └── util
 └── PnrGenerator.java
+```
 
 ## Run & Setup Instructions
 
