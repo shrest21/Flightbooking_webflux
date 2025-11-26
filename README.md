@@ -56,7 +56,7 @@ Using ReactiveMongoRepository
 High performance, scalable, non-blocking I/O
 
 ### **Technologies Used**
-
+```
 Tech	Version
 Java	17 / 22
 Spring Boot	4.0.0
@@ -64,7 +64,7 @@ Spring WebFlux	Reactive
 MongoDB	Reactive Driver
 Maven	Build Tool
 Netty	Reactive HTTP Server
-
+```
 ###  ****Project Structure****
 
 ```
@@ -124,7 +124,7 @@ http://localhost:8081
  1. Add Flight
 
 POST /flights
-
+```
 Request Body
 {
 "airline": "IndiGo",
@@ -137,7 +137,9 @@ Request Body
 "totalSeats": 180,
 "price": 4500
 }
+```
 
+```
 Response
 {
 "id": "6927f6e73dcccdcd1cedf2",
@@ -151,11 +153,12 @@ Response
 "totalSeats": 180,
 "price": 4500
 }
-
+```
  2. Search Flights
 
 GET /flights/search?from=DELHI&to=MUMBAI
 
+```
 Response
 [
 {
@@ -171,7 +174,7 @@ Response
 "price": 4500
 }
 ]
-
+```
 3. View All Flights
 
 GET /flights
@@ -180,7 +183,7 @@ BOOKING APIs
  4. Book a Ticket
 
 POST /booking
-
+```
 Request Body
 {
 "flightId": "69277d58576ca4d0b017c4848",
@@ -189,7 +192,8 @@ Request Body
 "seats": 2,
 "mealType": "VEG"
 }
-
+```
+```
 Response
 {
 "id": "692779705e03a36d36495b223",
@@ -203,7 +207,7 @@ Response
 "totalPrice": 9000,
 "journeyDate": "2025-12-01T10:00+05:30[Asia/Kolkata]"
 }
-
+```
  5. Get Ticket by PNR
 
 GET /booking/ticket/{pnr}
@@ -215,13 +219,13 @@ GET /booking/history/{email}
  7. Cancel Ticket
 
 DELETE /booking/cancel/{pnr}
-
+```
 Response
 {
 "status": "CANCELLED",
 "pnr": "E8CY6JCX"
 }
-
+```
  8. View All Bookings
 
 GET /booking
