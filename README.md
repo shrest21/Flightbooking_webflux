@@ -1,269 +1,225 @@
-Flight Booking Application — Spring WebFlux (Reactive)
+Flight Booking System (Spring Boot WebFlux + Reactive MongoDB)
 
-A fully reactive Flight Booking System built using Spring Boot WebFlux and MongoDB.
-The system supports flight search, ticket booking, cancellation, ticket retrieval, and booking history.
-It follows a clean service–repository layered architecture using Reactive Streams (Mono/Flux).
-This project is implemented based on the detailed assignment requirements and user stories provided in the Flight Booking Case Study document.
+A fully reactive Flight Search + Booking System built using:
 
-1. Problem Statement
+Spring Boot 4
 
-Users should be able to:
+Spring WebFlux
 
-Search for flights
+Reactive MongoDB
 
-Book a ticket
+Project Reactor (Mono/Flux)
 
-Cancel a ticket
+This application supports:
 
-View ticket details
+✔ Add Flights
+✔ Search Flights
+✔ View All Flights
+✔ Book Tickets
+✔ Get Ticket by PNR
+✔ Booking History by Email
+✔ Cancel Ticket
+✔ View All Bookings
 
-View booking history
+All features are 100% reactive, non-blocking, and run on top of Netty.
 
-Admin users can add flight inventory
+🚀 Features Implemented
+✈️ Flight Management
 
-All operations must be implemented using Spring WebFlux (reactive, non-blocking).
+Add a new flight
 
-2. Business Requirements Summary
-   User Capabilities
+View list of all flights
 
-Search for flights by date, origin, destination, and trip type (one-way or round-trip)
+Search flights by source & destination
 
-Select a flight and book tickets by providing:
+Automatic seat management (reserve & release seats)
 
-Passenger details
+🎫 Booking Management
 
-Email ID
+Book tickets with seat reservation
 
-Number of seats
+Generate unique PNR
 
-Meal preference
+Get ticket details by PNR
 
-Seat numbers
+Email-based booking history
 
-Download or view tickets (with PNR)
+Cancel booking and restore seats
 
-Cancel tickets (only if the journey is at least 24 hours away)
+Store passengers + meal preferences
 
-View booking history using email ID
+💾 Fully Reactive Data Access
 
-Admin Capabilities
+Using ReactiveMongoRepository
 
-Add airline flight inventory and schedule
+High performance, scalable, non-blocking I/O
 
-3. Project Architecture
-4. 
-   com.flightapp.flightbookingwebflux
+🛠️ Technologies Used
+Tech	Version
+Java	17 / 22
+Spring Boot	4.0.0
+Spring WebFlux	Reactive
+MongoDB	Reactive Driver
+Maven	Build Tool
+Netty	Reactive HTTP Server
+📁 Project Structure
+src/main/java/com/flightapp/flightbookingwebflux
+│
+├── controller
+│   ├── FlightController.java
+│   └── BookingController.java
+│
+├── service
+│   ├── FlightService.java
+│   └── BookingService.java
+│
+├── repository
+│   ├── FlightRepository.java
+│   └── BookingRepository.java
+│
+├── dto
+│   └── BookingRequest.java
+│
+├── model
+│   ├── Flight.java
+│   ├── Booking.java
+│   ├── Passenger.java
+│   └── BookingStatus.java
+│
+└── util
+└── PnrGenerator.java
 
-   ├── controller        → Reactive REST Controllers
-   ├── service           → Business logic layer
-   ├── repository        → Reactive MongoDB Repositories
-   ├── model             → Domain models
-   ├── exception         → Centralized exception handling (planned)
-   └── FlightbookingWebfluxApplication.java → Main Spring Boot class
+⚙️ Run & Setup Instructions
+1️⃣ Start MongoDB
 
-4. Technologies Used
-   Component	Technology
-   Backend Framework	Spring Boot 3 + WebFlux
-   Database	MongoDB (Reactive)
-   Reactive API	Project Reactor (Mono/Flux)
-   Build Tool	Maven
-   Language	Java 17+
-   Architecture	Reactive, Non-blocking REST APIs
-5. REST API Endpoints (Assignment Requirements)
-1. Add Airline Inventory — Admin
+Make sure MongoDB is running:
 
-POST /api/v1.0/flight/airline/inventory
-Adds flight schedule/inventory.
+mongod
 
-2. Search for Flights
-
-POST /api/v1.0/flight/search
-Search flights by date, from-place, to-place, and trip type.
-
-3. Book Ticket
-
-POST /api/v1.0/flight/booking/{flightId}
-Books a ticket for the selected flight.
-
-4. Get Ticket Details by PNR
-
-GET /api/v1.0/flight/ticket/{pnr}
-
-5. View Booking History
-
-GET /api/v1.0/flight/booking/history/{emailId}
-
-6. Cancel Ticket
-
-DELETE /api/v1.0/flight/booking/cancel/{pnr}
-Cancellation allowed only if travel date is more than 24 hours away.
-
-6. Project Components in Detail
-   Model Classes
-   Flight.java
-
-Represents flight details:
-
-Airline
-
-Flight name
-
-Origin and destination
-
-Price
-
-Departure information
-
-Seat availability
-
-Booking.java
-
-Represents booking details:
-
-Passenger list
-
-Email ID
-
-Meal preference
-
-Seat numbers
-
-Generated PNR
-
-Flight reference
-
-Timestamp
-
-Repository Layer (ReactiveMongoRepository)
-FlightRepository
-
-Handles reactive CRUD operations for flights.
-
-BookingRepository
-
-Stores and retrieves booking data.
-
-Both repositories return Mono<T> and Flux<T>.
-
-Service Layer
-FlightService
-
-Flight search
-
-Retrieve flight details
-
-Add or update inventory
-
-BookingService
-
-Book ticket
-
-Cancel ticket
-
-Fetch booking history
-
-View ticket details
-
-Generate PNR
-
-All logic implemented using reactive programming.
-
-Controller Layer
-FlightController
-
-Handles:
-
-Search flights
-
-Ticket details
-
-Add inventory
-
-BookingController
-
-Handles:
-
-Ticket booking
-
-Booking cancellation
-
-Booking history retrieval
-
-Configuration
-
-application.properties contains:
-
-MongoDB configuration
-
-Server port
-
-Basic application configurations
-
-7. Exception Handling (Planned)
-
-Package exception/ is created for:
-
-Global exception handling
-
-Custom business exceptions
-
-Reactive error responses
-
-8. Testing (Future Enhancement)
-
-Potential tests include:
-
-WebTestClient-based reactive endpoint tests
-
-Mockito-based service-layer tests
-
-Reactor context and publisher validation
-
-9. How to Run the Project
-   Step 1 — Start MongoDB
-
-Ensure MongoDB service is running.
-
-Step 2 — Build the project
-mvn clean install
-
-Step 3 — Run the application
+2️⃣ Update application.properties
+spring.application.name=flightbooking-webflux
+spring.data.mongodb.uri=mongodb://localhost:27017/flightdb
+server.port=8081
+
+3️⃣ Build & Run the App
+mvn clean package
 mvn spring-boot:run
 
-Step 4 — Access APIs
 
-Base URL:
+Server starts at:
 
-http://localhost:8080/api/v1.0/flight
+http://localhost:8081
 
-10. Code Quality and Rubrics
+📌 API Endpoints (Complete List)
+✈️ FLIGHT APIs
+➕ 1. Add Flight
 
-The project follows the expected standards:
+POST /flights
 
-Clean package structure
+Request Body
+{
+"airline": "IndiGo",
+"fromPlace": "DELHI",
+"toPlace": "MUMBAI",
+"flightName": "6E-501",
+"departureTime": "10:00",
+"arrivalTime": "12:00",
+"flightDate": "2025-12-01",
+"totalSeats": 180,
+"price": 4500
+}
 
-Clear separation of concerns
+Response
+{
+"id": "6927f6e73dcccdcd1cedf2",
+"airline": "IndiGo",
+"fromPlace": "DELHI",
+"toPlace": "MUMBAI",
+"flightName": "6E-501",
+"departureTime": "10:00",
+"arrivalTime": "12:00",
+"flightDate": "2025-12-01",
+"totalSeats": 180,
+"price": 4500
+}
 
-Meaningful commit history
+🔍 2. Search Flights
 
-Clean code structure
+GET /flights/search?from=DELHI&to=MUMBAI
 
-Fully reactive WebFlux implementation
+Response
+[
+{
+"id": "6927f6e73dcccdcd1cedf2",
+"airline": "IndiGo",
+"fromPlace": "DELHI",
+"toPlace": "MUMBAI",
+"flightName": "6E-501",
+"departureTime": "10:00",
+"arrivalTime": "12:00",
+"flightDate": "2025-12-01",
+"totalSeats": 180,
+"price": 4500
+}
+]
 
-Proper configuration management
+📄 3. View All Flights
 
-11. Future Enhancements
+GET /flights
 
-JWT-based authentication
+🎫 BOOKING APIs
+🟢 4. Book a Ticket
 
-Complete exception handling module
+POST /booking
 
-Round-trip pricing logic
+Request Body
+{
+"flightId": "69277d58576ca4d0b017c4848",
+"name": "Shrest",
+"email": "shrest@test.com",
+"seats": 2,
+"mealType": "VEG"
+}
 
-Email notifications
+Response
+{
+"id": "692779705e03a36d36495b223",
+"pnr": "E8CY6JCX",
+"flightId": "69277d58576ca4d0b017c4848",
+"name": "Shrest",
+"email": "shrest@test.com",
+"seats": 2,
+"mealType": "VEG",
+"status": "BOOKED",
+"totalPrice": 9000,
+"journeyDate": "2025-12-01T10:00+05:30[Asia/Kolkata]"
+}
 
-PDF ticket download
+🎟 5. Get Ticket by PNR
 
-12. Conclusion
+GET /booking/ticket/{pnr}
 
-This project implements a fully reactive Flight Booking System using Spring WebFlux and MongoDB, delivering a clean architecture, end-to-end functionality, and alignment with the official problem statement requirements.
+📬 6. Booking History
+
+GET /booking/history/{email}
+
+❌ 7. Cancel Ticket
+
+DELETE /booking/cancel/{pnr}
+
+Response
+{
+"status": "CANCELLED",
+"pnr": "E8CY6JCX"
+}
+
+📑 8. View All Bookings
+
+GET /booking
+
+🧠 Seat Management Logic
+On Booking:
+totalSeats = totalSeats - requestedSeats
+
+On Cancellation:
+totalSeats = totalSeats + cancelledSeats
