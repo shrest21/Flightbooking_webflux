@@ -1,4 +1,4 @@
-Flight Booking System (Spring Boot WebFlux + Reactive MongoDB)
+# Flight Booking System (Spring Boot WebFlux + Reactive MongoDB)
 
 A fully reactive Flight Search + Booking System built using:
 
@@ -23,8 +23,9 @@ This application supports:
 
 All features are 100% reactive, non-blocking, and run on top of Netty.
 
-🚀 Features Implemented
-✈️ Flight Management
+##  **Features Implemented**
+
+###  **Flight Management**
 
 Add a new flight
 
@@ -34,7 +35,7 @@ Search flights by source & destination
 
 Automatic seat management (reserve & release seats)
 
-🎫 Booking Management
+**### Booking Management**
 
 Book tickets with seat reservation
 
@@ -48,13 +49,14 @@ Cancel booking and restore seats
 
 Store passengers + meal preferences
 
-💾 Fully Reactive Data Access
+### **Fully Reactive Data Access**
 
 Using ReactiveMongoRepository
 
 High performance, scalable, non-blocking I/O
 
-🛠️ Technologies Used
+### **Technologies Used**
+
 Tech	Version
 Java	17 / 22
 Spring Boot	4.0.0
@@ -62,7 +64,9 @@ Spring WebFlux	Reactive
 MongoDB	Reactive Driver
 Maven	Build Tool
 Netty	Reactive HTTP Server
-📁 Project Structure
+
+###  ****Project Structure****
+
 src/main/java/com/flightapp/flightbookingwebflux
 │
 ├── controller
@@ -89,7 +93,8 @@ src/main/java/com/flightapp/flightbookingwebflux
 └── util
 └── PnrGenerator.java
 
-⚙️ Run & Setup Instructions
+## Run & Setup Instructions
+
 1️⃣ Start MongoDB
 
 Make sure MongoDB is running:
@@ -110,9 +115,11 @@ Server starts at:
 
 http://localhost:8081
 
-📌 API Endpoints (Complete List)
-✈️ FLIGHT APIs
-➕ 1. Add Flight
+##  **API Endpoints (Complete List)**
+
+###  **FLIGHT APIs**
+
+ 1. Add Flight
 
 POST /flights
 
@@ -143,7 +150,7 @@ Response
 "price": 4500
 }
 
-🔍 2. Search Flights
+ 2. Search Flights
 
 GET /flights/search?from=DELHI&to=MUMBAI
 
@@ -163,12 +170,12 @@ Response
 }
 ]
 
-📄 3. View All Flights
+3. View All Flights
 
 GET /flights
 
-🎫 BOOKING APIs
-🟢 4. Book a Ticket
+BOOKING APIs
+ 4. Book a Ticket
 
 POST /booking
 
@@ -195,15 +202,15 @@ Response
 "journeyDate": "2025-12-01T10:00+05:30[Asia/Kolkata]"
 }
 
-🎟 5. Get Ticket by PNR
+ 5. Get Ticket by PNR
 
 GET /booking/ticket/{pnr}
 
-📬 6. Booking History
+ 6. Booking History
 
 GET /booking/history/{email}
 
-❌ 7. Cancel Ticket
+ 7. Cancel Ticket
 
 DELETE /booking/cancel/{pnr}
 
@@ -213,11 +220,11 @@ Response
 "pnr": "E8CY6JCX"
 }
 
-📑 8. View All Bookings
+ 8. View All Bookings
 
 GET /booking
 
-🧠 Seat Management Logic
+ Seat Management Logic
 On Booking:
 totalSeats = totalSeats - requestedSeats
 
